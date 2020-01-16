@@ -2,7 +2,12 @@ from __future__ import print_function, unicode_literals
 import inspect
 
 from django.core.exceptions import ImproperlyConfigured
-from django.core.urlresolvers import Resolver404, resolve
+# For Django 2.x compatibility and to maintain Django 1.x compatibility
+# TODO: Remove try/except after Django<2.x no longer supported
+try:
+    from django.urls import Resolver404, resolve
+except ImportError:
+    from django.core.urlresolvers import Resolver404, resolve
 from django.template.response import SimpleTemplateResponse
 from six.moves.urllib_parse import urlsplit, urlunsplit
 
