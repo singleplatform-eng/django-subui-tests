@@ -3,7 +3,12 @@ from unittest import TestCase
 
 import mock
 from django.core.exceptions import ImproperlyConfigured
-from django.core.urlresolvers import Resolver404
+# For Django 2.x compatibility and to maintain Django 1.x compatibility
+# TODO: Remove try/except after Django<2.x no longer supported
+try:
+    from django.urls import Resolver404
+except ImportError:
+    from django.core.urlresolvers import Resolver404
 from django.http.response import HttpResponse
 from django.template.response import SimpleTemplateResponse
 

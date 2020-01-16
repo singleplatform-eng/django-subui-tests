@@ -5,7 +5,12 @@ import unittest
 from collections import OrderedDict
 
 import six
-from django.core.urlresolvers import reverse
+# For Django 2.x compatibility and to maintain Django 1.x compatibility
+# TODO: Remove try/except after Django<2.x no longer supported
+try:
+    from django.urls import reverse
+except ImportError:
+    from django.core.urlresolvers import reverse
 from django.test import override_settings
 
 from .validators import BaseValidator
